@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="QtSettings">
+    <option name="myCurrentProfile" value="Debug" />
+    <option name="mySettingsPerProfile">
+      <map>
+        <entry key="Debug">
+          <value>
+            <PerProfileState>
+              <option name="myQmlPath" value="/usr/lib/x86_64-linux-gnu/qt6/qml" />
+              <option name="myQtBinPath" value="/usr/lib/qt6/bin" />
+              <option name="myCustomQmlPath" value="/data/home/Nanomoa/Qt/6.6.0/gcc_64/qml" />
+              <option name="myCustomQtBinPath" value="/data/home/Nanomoa/Qt/6.6.0/gcc_64/bin" />
+            </PerProfileState>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

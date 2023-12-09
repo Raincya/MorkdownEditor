@@ -27,8 +27,22 @@ add_executable(MarkdownEditor main.cpp
         Utils/MarkdownParser/Parser.cpp
         Utils/StringUtil/StringUtil.cpp
         Utils/StringUtil/StringUtil.h
-        Pages/LoginAndRegister/Model.cpp
-        Pages/LoginAndRegister/Controller.cpp
+        Utils/Json/configor.hpp
+        Utils/Json/configor_conversion.hpp
+        Utils/Json/configor_declare.hpp
+        Utils/Json/configor_encoding.hpp
+        Utils/Json/configor_exception.hpp
+        Utils/Json/configor_iterator.hpp
+        Utils/Json/configor_parser.hpp
+        Utils/Json/configor_serializer.hpp
+        Utils/Json/configor_stream.hpp
+        Utils/Json/configor_token.hpp
+        Utils/Json/configor_value.hpp
+        Utils/Json/configor_wrapper.hpp
+        Utils/Json/json.hpp
+        Config/ServerConfig.h
+        Pages/LoginAndRegister/Controller.h
+        Pages/LoginAndRegister/Model.h
 )
 
 target_link_libraries(MarkdownEditor
