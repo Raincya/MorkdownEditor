@@ -2,8 +2,8 @@
 // Created by Nanomoa on 23-12-9.
 //
 
-#ifndef MARKDOWNEDITOR_CONTROLLER_H
-#define MARKDOWNEDITOR_CONTROLLER_H
+#ifndef MARKDOWNEDITOR_LOGINANDREGCONTROLLER_H
+#define MARKDOWNEDITOR_LOGINANDREGCONTROLLER_H
 
 #include <utility>
 
@@ -89,4 +89,4 @@ private:
     configor::json::value userInfo;
 };
 
-#endif //MARKDOWNEDITOR_CONTROLLER_H
+#endif //MARKDOWNEDITOR_LOGINANDREGCONTROLLER_H

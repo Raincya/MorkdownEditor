@@ -49,7 +49,7 @@ namespace Markdown
               "<html>\n"
               "<head>\n"
               "<meta charset=\""
-           << _get("charset")
+           << "utf-8"
            << "\">\n"
               "<title></title>\n"
               "</head>\n"

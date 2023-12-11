@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
-Window {
+ApplicationWindow {
     height: 600
     visible: true
     width: 1080
@@ -129,10 +129,20 @@ Window {
                                 font.pointSize: 12
                                 height: parent.height
                                 width: parent.width
+                                font.family: "Microsoft YaHei"
+                                text: "测试"
 
                                 background: Rectangle {
                                     anchors.fill: parent
                                     color: "#F5FFFA"
+                                }
+
+                                Keys.onReturnPressed: {
+                                    console.log("test")
+                                    textArea.text += '\n'
+                                    textArea.cursorPosition = textArea.text.length
+
+                                    htmlDisplay.text = main.toHtml(textArea.text)
                                 }
                             }
                         }
@@ -144,6 +154,18 @@ Window {
                     Layout.fillHeight: true
                     Layout.preferredWidth: (mainRec.width - sideMenu.width - sideBar.width) * 0.5
                     color: "#EEE9E9"
+
+                    TextArea {
+                        id: htmlDisplay
+                        anchors.fill: parent
+                        font.pixelSize: 14
+                        readOnly: true
+
+                        // 设置HTML内容
+                        text: ""
+                        textFormat: TextEdit.RichText
+                        wrapMode: TextEdit.WordWrap
+                    }
                 }
             }
         }

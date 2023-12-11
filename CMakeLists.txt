@@ -42,10 +42,12 @@ add_executable(MarkdownEditor main.cpp
         Utils/Json/configor_wrapper.hpp
         Utils/Json/json.hpp
         Config/ServerConfig.h
-        Pages/LoginAndRegister/Controller.h
-        Pages/LoginAndRegister/Model.h
+        Pages/LoginAndRegister/LoginAndRegController.h
+        Pages/LoginAndRegister/LoginAndRegModel.h
         Utils/Timer/Timer.cpp
         Utils/Timer/Timer.h
+        Pages/Main/MainModel.h
+        Pages/Main/MainController.h
 )
 
 target_link_libraries(MarkdownEditor

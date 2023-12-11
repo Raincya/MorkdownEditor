@@ -13,7 +13,7 @@
 
 namespace Markdown
 {
-    class Parser : AbstractParser, Configurable
+    class Parser : AbstractParser // , Configurable
     {
     private:
         AbstractMarkdown *_md;  //Markdown 解释器
@@ -27,7 +27,7 @@ namespace Markdown
     public:
         Parser(AbstractMarkdown *md, AbstractDecorator *decorator) : _md{md}, _decorator(decorator) { }
 
-        Parser(AbstractMarkdown *md, AbstractDecorator *decorator, const setting_type &settings) : Configurable(settings), _md(md), _decorator(decorator) {}
+//        Parser(AbstractMarkdown *md, setting_type *decorator, const setting_type &settings) : Configurable(settings), _md(md), _decorator(decorator) {}
 
         /**
          * @brief 解析字符串，返回html格式
@@ -44,7 +44,7 @@ namespace Markdown
          * **/
         parse_result parseFile(const std::string &filename) override;
 
-        ~Parser() override = default; //todo 虚继承的析构
+        ~Parser() = default; //todo 虚继承的析构
     };
 }
 
