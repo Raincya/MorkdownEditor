@@ -13,12 +13,12 @@ void RegisterQmlType()
 
 int main(int argc, char *argv[])
 {
-    std::unique_ptr<QGuiApplication> app(new QGuiApplication(argc, argv));
+    std::unique_ptr<QGuiApplication> app = std::make_unique<QGuiApplication>(argc, argv);
 
     RegisterQmlType();
 
     std::unique_ptr<QQmlApplicationEngine> engine = std::make_unique<QQmlApplicationEngine>();
-    const QUrl startUrl("../Pages/LoginAndRegister/View.qml");
+    const QUrl startUrl("../Pages/Main/View.qml");
     engine->load(startUrl);
 
     return app->exec();

@@ -2,135 +2,148 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
-Item{
+Window {
+    height: 600
+    visible: true
     width: 1080
-    height: 607.5
-    visible:true
-    Rectangle{
-        anchors.fill:parent
-        id:mainRec
-        color:"yellow"
-        ColumnLayout{
-            anchors.fill:parent
+
+    Rectangle {
+        id: mainRec
+        anchors.fill: parent
+        color: "yellow"
+
+        ColumnLayout {
+            anchors.fill: parent
             spacing: 0
-            Rectangle{//顶部菜单
+
+            Rectangle {
+                //顶部菜单
                 Layout.alignment: Qt.AlignTop
-                Layout.fillWidth:true
-                height:15
+                Layout.fillWidth: true
                 color: "pink"
+                height: 15
             }
-            RowLayout{
-                height: parent.height-15
-                width: parent.width
+            RowLayout {
+                height: parent.height - 15
                 spacing: 0
-                Rectangle{
+                width: parent.width
+
+                Rectangle {
                     id: sideMenu
-                    Layout.fillHeight:true
-                    width: 50
+                    Layout.fillHeight: true
                     color: "#1c1c1c"
-                    Button{
-                        width: parent.width-10
+                    width: 47
+
+                    Button {
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.top: parent.top
+                        anchors.topMargin: 10
                         height: width
-                        anchors.horizontalCenter:parent.horizontalCenter
-                        anchors.top:parent.top
-                        anchors.topMargin:10
-                        background:Rectangle{
-                            anchors.fill:parent
-                            opacity:0.0
-                        }
-                        icon.source:"../../Src/icons/icon-dirlist.png"
                         // icon.height:height
                         // icon.width:width
-                        icon.color:"#1296db"
+                        icon.color: "#1296db"
+                        icon.source: "../../Src/icons/icon-dirlist.png"
+                        width: parent.width - 10
+
                         // hoverEnabled:false
-                        onClicked:{
-                            sideBar.folded = !sideBar.folded
+                        onClicked: {
+                            sideBar.folded = !sideBar.folded;
                             // sideBar.folded?editingField.width=editingField.width+150:editingField.width=editingField.width-150
+                        }
+
+                        background: Rectangle {
+                            anchors.fill: parent
+                            opacity: 0.0
                         }
                     }
                 }
-
-
-                Rectangle{//Dir list
+                Rectangle {
+                    //Dir list
                     id: sideBar
-                    Layout.fillHeight:true
-                    Layout.preferredWidth: folded?0:150
-                    color:"#444444"
                     property bool folded: true
-                    clip:true
-                    ColumnLayout{
+
+                    Layout.fillHeight: true
+                    Layout.preferredWidth: folded ? 0 : 180
+                    clip: true
+                    color: "#E0FFFF"
+
+                    ColumnLayout {
                         anchors.fill: parent
                     }
                 }
-
-
-                Rectangle{//Editing Field
+                Rectangle {
+                    //Editing Field
                     id: editingField
-                    Layout.fillHeight:true
-                    Layout.fillWidth:true
-                    RowLayout{
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
+
+                    RowLayout {
                         id: idxrow
-                        anchors.fill:parent
-                        spacing:0
-                        ScrollView{
+                        anchors.fill: parent
+                        spacing: 0
+
+                        ScrollView {
                             id: lineIndex
-                            Layout.fillHeight:true
-                            contentHeight:tascro.contentHeight
-                            width:60
-                            background: Rectangle{
-                                anchors.fill:parent
-                                color:"grey"
-                            }
-                            ScrollBar.vertical.policy: ScrollBar.AlwaysOff
+                            Layout.fillHeight: true
                             ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+                            ScrollBar.vertical.policy: ScrollBar.AlwaysOff
                             ScrollBar.vertical.position: tascro.ScrollBar.vertical.position
-                            MouseArea{
-                                anchors.fill:parent
+                            contentHeight: tascro.contentHeight
+                            width: 38
+
+                            MouseArea {
+                                anchors.fill: parent
                             }
-                            Repeater{
+                            Repeater {
                                 id: rep
-                                model:textArea.lineCount
-                                Rectangle{
-                                    id:lineBolck
-                                    width:parent.width
-                                    height:textArea.contentHeight/textArea.lineCount
-                                    color:"grey"
-                                    y:index*height
-                                    Text{
-                                        anchors.right:parent.right
-                                        text:index+1+" | "
-                                        font.pointSize:12
+                                model: textArea.lineCount
+
+                                Rectangle {
+                                    id: lineBolck
+                                    color: "#FFE4C4"
+                                    height: textArea.contentHeight / textArea.lineCount
+                                    width: parent.width
+                                    y: index * height
+
+                                    Text {
+                                        anchors.right: parent.right
+                                        font.pointSize: 12
+                                        text: index + 1 + " | "
                                     }
                                 }
                             }
-                        }
-                        ScrollView{
-                            id: tascro
-                            Layout.fillHeight:true
-                            Layout.fillWidth:true
-                            contentHeight:textArea.contentHeight+2*(textArea.contentHeight/textArea.lineCount)
-                            TextArea{
-                                id: textArea
-                                width:parent.width
-                                height:parent.height
-                                font.pointSize:12
 
-                                background: Rectangle{
-                                    anchors.fill:parent
-                                    color:"#d5d5d5"
+                            background: Rectangle {
+                                anchors.fill: parent
+                                color: "#CDBA96"
+                            }
+                        }
+                        ScrollView {
+                            id: tascro
+                            Layout.fillHeight: true
+                            Layout.fillWidth: true
+                            contentHeight: textArea.contentHeight + 2 * (textArea.contentHeight / textArea.lineCount)
+
+                            TextArea {
+                                id: textArea
+                                font.pointSize: 12
+                                height: parent.height
+                                width: parent.width
+
+                                background: Rectangle {
+                                    anchors.fill: parent
+                                    color: "#F5FFFA"
                                 }
                             }
-
                         }
                     }
                 }
-
-
-                Rectangle{//Preview Field
+                Rectangle {
+                    //Preview Field
                     id: preViewField
                     Layout.fillHeight: true
-                    Layout.preferredWidth:(mainRec.width-sideMenu.width-sideBar.width)*0.4
-                    color:"purple"
+                    Layout.preferredWidth: (mainRec.width - sideMenu.width - sideBar.width) * 0.5
+                    color: "#EEE9E9"
                 }
             }
         }

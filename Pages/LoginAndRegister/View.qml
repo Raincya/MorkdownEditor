@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import LoginAndReg 1.0
 
 Window {
     height: 480
@@ -258,6 +259,7 @@ Window {
                                             }
                                         }
                                     }
+
                                     Rectangle {
                                         Layout.alignment: Qt.AlignHCenter
                                         Layout.preferredHeight: 40

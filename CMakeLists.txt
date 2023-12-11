@@ -12,6 +12,7 @@ find_package(Qt6 COMPONENTS
         Widgets
         Network
         Quick
+        WebEngineQuick
         REQUIRED)
 
 add_executable(MarkdownEditor main.cpp
@@ -43,6 +44,8 @@ add_executable(MarkdownEditor main.cpp
         Config/ServerConfig.h
         Pages/LoginAndRegister/Controller.h
         Pages/LoginAndRegister/Model.h
+        Utils/Timer/Timer.cpp
+        Utils/Timer/Timer.h
 )
 
 target_link_libraries(MarkdownEditor
@@ -51,4 +54,5 @@ target_link_libraries(MarkdownEditor
         Qt6::Widgets
         Qt6::Network
         Qt6::Quick
+        Qt6::WebEngineQuick
 )
