@@ -3,12 +3,14 @@
 struct ServerConfig
 {
     const std::string url = "http://127.0.0.1:4561/";
-    std::string login()
+
+    static std::string login()
     {
-        return url + "user/login";
+        return "/user/login";
     }
-    std::string reg()
+
+    static std::string reg()
     {
-        return url + "user/reg";
+        return "/user/reg";
     }
 };

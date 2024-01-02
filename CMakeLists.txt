@@ -16,7 +16,6 @@ find_package(Qt6 COMPONENTS
         REQUIRED)
 
 add_executable(MarkdownEditor main.cpp
-        Utils/HttpClient/HttpClient.cpp
         Utils/HttpClient/HttpClient.h
         Utils/MarkdownParser/AbsractParser.h
         Utils/MarkdownParser/AbstractDecorator.h

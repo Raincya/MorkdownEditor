@@ -1,9 +1,9 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import LoginAndReg 1.0
 
-Window {
+ApplicationWindow {
+    id: loginWindow
     height: 480
     visible: true
     width: 350
@@ -288,7 +288,17 @@ Window {
 
                                                 onClicked: //登录功能  ids:   longinusername   longinpassword
                                                 {
-
+                                                    // console.log("test")
+                                                    // let msg = loginAndReg.login(loginUsername.text, loginPassword.text)
+                                                    // console.log(msg)
+                                                    // let msgs = msg.split(":");
+                                                    // if(msg.indexOf("success") !== -1)
+                                                    // {
+                                                    //     console.log("success: " + msgs[1])
+                                                    // } else
+                                                    // {
+                                                    //     console.log("fail: " + msgs[1])
+                                                    // }
                                                 }
                                             }
                                         }

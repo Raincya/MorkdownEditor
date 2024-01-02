@@ -8,17 +8,17 @@
 
 int main(int argc, char *argv[])
 {
-    std::unique_ptr<QGuiApplication> app = std::make_unique<QGuiApplication>(argc, argv);
-
+    QGuiApplication app(argc, argv);
     std::unique_ptr<QQmlApplicationEngine> engine = std::make_unique<QQmlApplicationEngine>();
 
-
     MainModel mainModel;
-
+    LoginAndRegModel loginAndRegModel;
     engine->rootContext()->setContextProperty("main", &mainModel);
+    engine->rootContext()->setContextProperty("loginAndReg", &loginAndRegModel);
+    engine->rootContext()->setContextProperty("app", &app);
 
-    const QUrl startUrl("../Pages/Main/View.qml");
+    const QUrl startUrl("../Pages/LoginAndRegister/View.qml");
     engine->load(startUrl);
 
-    return app->exec();
+    return QGuiApplication::exec();
 }

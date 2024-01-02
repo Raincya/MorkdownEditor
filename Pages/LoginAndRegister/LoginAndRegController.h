@@ -6,82 +6,61 @@
 #define MARKDOWNEDITOR_LOGINANDREGCONTROLLER_H
 
 #include <utility>
+#include <iostream>
+#include <QGuiApplication>
+#include <thread>
 
 #include "../../Utils/Json/json.hpp"
 #include "../../Utils/HttpClient/HttpClient.h"
 #include "../../Config/ServerConfig.h"
 
-struct Status
-{
-    bool isSuccess{};
-    std::string message;
-    Status() = default;
-    Status(const bool _isSuccess, std::string  _message) : isSuccess(_isSuccess), message(std::move(_message)) { }
-};
-
 class LoginAndRegController
 {
 public:
-    Status Login(const std::string& username, const std::string& password)
+    configor::json::value Login(const QString& username, const QString& password)
     {
         this->userInfo = configor::json::object{
-                {"username", username},
-                {"password", password}
+                {"username", username.toStdString()},
+                {"password", password.toStdString()}
         };
 
-        std::unique_ptr<HttpClient> httpClient = std::make_unique<HttpClient>(QString::fromStdString((new ServerConfig())->login()));
 
-        Status result;
+        std::unique_ptr<httplib::Client> client = std::make_unique<httplib::Client>("http://localhost:4561");
 
-        httpClient->json(QString::fromStdString(configor::json::dump(this->userInfo)))
-                .success([&](const QString& req) -> void
-                         {
-                             configor::json::value jsonReq = configor::json::parse(req.toStdString());
-                             result = {
-                                     jsonReq["code"] == 1,
-                                     jsonReq["msg"]
-                             };
-                         })
-                .fail([&](const QString& req, int code) -> void
-                      {
-                          result = {
-                                  false,
-                                  req.toStdString()
-                          };
-                      })
-                .post();
+        auto res_from_server = client->Post("/user/login",
+                                            {
+                                                    {"content-type", "application/json"}
+                                            },
+                                            configor::json::dump(this->userInfo),
+                                            "application/json");
+
+        configor::json::value result = configor::json::parse(res_from_server->body);
+
+        std::cerr << configor::json::dump(result) << std::endl;
 
         return result;
     }
 
-    Status Reg(const std::string& username, const std::string& password)
+    configor::json::value Reg(const QString& username, const QString& password)
     {
         this->userInfo = configor::json::object{
-                {"username", username},
-                {"password", password}
+                {"username", username.toStdString()},
+                {"password", password.toStdString()}
         };
 
-        std::unique_ptr<HttpClient> httpClient = std::make_unique<HttpClient>(QString::fromStdString((new ServerConfig())->reg()));
 
-        Status result;
+        std::unique_ptr<httplib::Client> client = std::make_unique<httplib::Client>("http://localhost:4561");
 
-        httpClient->json(QString::fromStdString(configor::json::dump(this->userInfo)))
-                .success([&](const QString& req) -> void
-                         {
-                             configor::json::value jsonReq = configor::json::parse(req.toStdString());
-                             result = {
-                                     jsonReq["code"] == 1,
-                                     jsonReq["msg"]
-                             };
-                         })
-                .fail([&](const QString& req, int code) -> void
-                      {
-                          result = {
-                                  false,
-                                  req.toStdString()
-                          };
-                      })
-                .post();
+        auto res_from_server = client->Post("/user/reg",
+                                            {
+                                                    {"content-type", "application/json"}
+                                            },
+                                            configor::json::dump(this->userInfo),
+                                            "application/json");
+
+        configor::json::value result = configor::json::parse(res_from_server->body);
+
+        std::cerr << configor::json::dump(result) << std::endl;
 
         return result;
     }

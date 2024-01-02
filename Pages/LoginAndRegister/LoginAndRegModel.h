@@ -6,6 +6,7 @@
 #define MARKDOWNEDITOR_LOGINANDREGMODEL_H
 
 #include <QObject>
+#include "../../Utils/Json/json.hpp"
 #include "LoginAndRegController.h"
 
 class LoginAndRegModel : public QObject
@@ -15,13 +16,19 @@ public:
     explicit LoginAndRegModel(QObject* parent = nullptr) : QObject(parent) { }
 
 public slots:
-    void login(QString& username, QString& password)
+    Q_INVOKABLE QString login(const QString& username, const QString& password)
     {
-        controller->Login(username.toStdString(), password.toStdString());
+        configor::json::value res = controller.Login(username, password);
+        return QString::fromStdString(res["msg"]);
     }
 
+    Q_INVOKABLE QString reg(const QString& username, const QString& password)
+    {
+        configor::json::value res = controller.Reg(username, password);
+        return QString::fromStdString(res["msg"]);
+    }
 private:
-    std::unique_ptr<LoginAndRegController> controller;
+    LoginAndRegController controller;
 };
 
 #endif //MARKDOWNEDITOR_LOGINANDREGMODEL_H

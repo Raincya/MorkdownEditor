@@ -3,6 +3,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 ApplicationWindow {
+    id: mainWindow
     height: 600
     visible: true
     width: 1080
@@ -130,7 +131,7 @@ ApplicationWindow {
                                 height: parent.height
                                 width: parent.width
                                 font.family: "Microsoft YaHei"
-                                text: "测试"
+                                text: ""
 
                                 background: Rectangle {
                                     anchors.fill: parent
