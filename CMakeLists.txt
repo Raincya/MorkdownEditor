@@ -40,7 +40,6 @@ add_executable(MarkdownEditor main.cpp
         Utils/Json/configor_value.hpp
         Utils/Json/configor_wrapper.hpp
         Utils/Json/json.hpp
-        Config/ServerConfig.h
         Pages/LoginAndRegister/LoginAndRegController.h
         Pages/LoginAndRegister/LoginAndRegModel.h
         Utils/Timer/Timer.cpp
